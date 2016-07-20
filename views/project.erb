@@ -20,6 +20,7 @@
 <form id="add_employee_id" action="/projects/<%= @project.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
   <input type="hidden" name="project_id" id="project_id" value="<%= @project.id() %>">
+  <input name="form_id" type="hidden" value="add_employee_id">
   <label for="employee_id">Select an employee:  </label>
     <br>
   <select id="employee_id" name="employee_id">
@@ -29,4 +30,26 @@
     <% end %>
   </select>
   <button type="submit">Submit</button>
+</form>
+
+<p>Remove an employee to this project:<p>
+<form id="remove_employee_id" action="/projects/<%= @project.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <input type="hidden" name="project_id" id="project_id" value="<%= @project.id() %>">
+  <input name="form_id" type="hidden" value="remove_employee_id">
+  <label for="employee_id">Select an employee:  </label>
+    <br>
+  <select id="employee_id" name="employee_id">
+    <option value=""></option>
+    <% @employees.each() do |employee| %>
+      <option value="<%= employee.id() %>"><%= employee.name() %></option>
+    <% end %>
+  </select>
+  <button type="submit">Submit</button>
+</form>
+
+<h4>Delete project</h4>
+<form action="/projects/<%= @project.id() %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">Delete</button>
 </form>
